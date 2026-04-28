@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>My Profile Page</title>
+    <style>
+      /* CSS — controls how the page looks */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4ff;
+        margin: 40px;
+        color: #222;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      body.dark {
+        background-color: #1e1e2f;
+        color: #f0f0f0;
+      }
+      h1 { color: #006eaa; text-align: center; }
+      h2 { color: #008060; }
+      .profile-box {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: 0 auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      body.dark .profile-box {
+        background-color: #2a2a3d;
+      }
+      ul { line-height: 2; }
+      button {
+        background-color: #006eaa;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 6px 4px;
+        font-size: 14px;
+      }
+      button:hover { background-color: #00547f; }
+    </style>
+  </head>
+  <body>
+    <div class="profile-box">
+      <h1>👋 Hi, I am Jacob!</h1>
+      <h2>About Me</h2>
+      <p>
+        I am a learner in the Moringa AI Access Program,
+        building my skills in software development with
+        the help of AI. I work in a telecommunication company,
+        and I love exploring new technologies.
+      </p>
+      <h2>My Hobbies</h2>
+      <ul>
+        <li>💻 Learning to code</li>
+        <li>📚 Reading tech articles</li>
+        <li>🇨🇳 Studying Chinese</li>
+        <li>🏃 Staying active</li>
+      </ul>
+      <h2>My Goal</h2>
+      <p id="goal-text">
+        My goal is to bridge operations and engineering,
+        and build solutions that make life easier for
+        people I serve every day.
+      </p>
+ 
+      <!-- JavaScript-powered buttons -->
+      <button onclick="greetMe()">Greet Me</button>
+      <button onclick="toggleTheme()">Toggle Theme</button>
+      <p id="greeting"></p>
+    </div>
+ 
+    <script>
+      // JavaScript — adds behaviour to the page
+      function greetMe() {
+        const now = new Date();
+        const hour = now.getHours();
+        let message = "Hello!";
+        if (hour < 12) message = "Good morning!";
+        else if (hour < 18) message = "Good afternoon!";
+        else message = "Good evening!";
+        document.getElementById("greeting").innerText =
+          message + " Thanks for visiting my page.";
+      }
+ 
+      function toggleTheme() {
+        document.body.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>
