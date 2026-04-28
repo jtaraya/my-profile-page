@@ -1,3 +1,4 @@
+# Capstone Project. Beginner's Toolkit: HTML, CSS & JavaScript using AI.
 # My Profile Page
 
 A simple, interactive personal profile webpage built with **HTML, CSS, and JavaScript** as part of the **Moringa AI Access Program** capstone project.
