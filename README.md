@@ -1,4 +1,9 @@
+# Capstone Project. Beginner's Toolkit: HTML, CSS & JavaScript using AI.
 # My Profile Page
+
+By: Jacob Taraya
+
+https://jtaraya.github.io/my-profile-page/
 
 A simple, interactive personal profile webpage built with **HTML, CSS, and JavaScript** as part of the **Moringa AI Access Program** capstone project.
 
@@ -51,3 +56,4 @@ A few example prompts I used:
 
 **Jacob Taraya**
 Moringa School AI Access Program
+
