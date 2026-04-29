@@ -41,40 +41,160 @@
         font-size: 14px;
       }
       button:hover { background-color: #00547f; }
+
+      /* Live clock — fixed in the top-right corner */
+      #live-clock {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #006eaa;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: 'Courier New', monospace;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        z-index: 1000;
+      }
+      body.dark #live-clock {
+        background-color: #2a2a3d;
+        border: 1px solid #4a4a5e;
+      }
+      #live-clock .clock-date {
+        font-size: 12px;
+        opacity: 0.85;
+      }
+      #live-clock .clock-time {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 2px;
+      }
+
+      /* Skills bars — the grey track and the coloured fill that animates */
+      .skill {
+        margin: 10px 0;
+      }
+      .skill-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+      .skill-track {
+        background-color: #e6e6e6;
+        border-radius: 6px;
+        height: 14px;
+        overflow: hidden;
+      }
+      body.dark .skill-track {
+        background-color: #3a3a4d;
+      }
+      .skill-fill {
+        height: 100%;
+        width: 0;                              /* starts empty */
+        border-radius: 6px;
+        transition: width 1.5s ease-out;       /* the animation magic */
+      }
+      .skill-fill.html-bar { background-color: #e34c26; }
+      .skill-fill.css-bar  { background-color: #264de4; }
+      .skill-fill.js-bar   { background-color: #f0db4f; }
+
+      /* Quote box */
+      #quote-box {
+        margin-top: 20px;
+        padding: 16px;
+        background-color: #f5f9ff;
+        border-left: 4px solid #006eaa;
+        border-radius: 6px;
+        font-style: italic;
+        min-height: 60px;
+      }
+      body.dark #quote-box {
+        background-color: #252538;
+        border-left-color: #008060;
+      }
+      #quote-author {
+        display: block;
+        margin-top: 8px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 13px;
+        opacity: 0.8;
+      }
     </style>
   </head>
   <body>
+    <!-- Live clock — sits in the top-right corner -->
+    <div id="live-clock">
+      <div class="clock-date" id="clock-date">Loading...</div>
+      <div class="clock-time" id="clock-time">--:--:--</div>
+    </div>
+
     <div class="profile-box">
       <h1>👋 Hi, I am Jacob!</h1>
       <h2>About Me</h2>
       <p>
         I am a learner in the Moringa AI Access Program,
         building my skills in software development with
-        the help of AI. I work in a telecommunication company,
+        the help of AI. I work at Safaricom in Nanyuki,
         and I love exploring new technologies.
       </p>
+
       <h2>My Hobbies</h2>
       <ul>
-        <li>💻 Learning to code.</li>
-        <li>📚 Reading tech articles.</li>
-        <li>🇨🇳 Studying Chinese.</li>
-        <li>🏃 Staying active.</li>
+        <li>💻 Learning to code</li>
+        <li>📚 Reading tech articles</li>
+        <li>🇨🇳 Studying Chinese</li>
+        <li>🏃 Staying active</li>
       </ul>
+
+      <h2>My Skills</h2>
+      <!-- Skill bars — the inner .skill-fill div is animated by JavaScript -->
+      <div class="skill">
+        <div class="skill-label"><span>HTML</span><span>80%</span></div>
+        <div class="skill-track">
+          <div class="skill-fill html-bar" data-level="80"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <div class="skill-label"><span>CSS</span><span>70%</span></div>
+        <div class="skill-track">
+          <div class="skill-fill css-bar" data-level="70"></div>
+        </div>
+      </div>
+      <div class="skill">
+        <div class="skill-label"><span>JavaScript</span><span>40%</span></div>
+        <div class="skill-track">
+          <div class="skill-fill js-bar" data-level="40"></div>
+        </div>
+      </div>
+
       <h2>My Goal</h2>
       <p id="goal-text">
         My goal is to bridge operations and engineering,
         and build solutions that make life easier for
         people I serve every day.
       </p>
- 
-      <!-- JavaScript-powered buttons -->
+
+      <h2>Quote of the Day</h2>
+      <div id="quote-box">
+        <span id="quote-text">Click the button to get inspired!</span>
+        <span id="quote-author"></span>
+      </div>
+      <button onclick="showRandomQuote()">New Quote</button>
+
+      <!-- Original buttons -->
       <button onclick="greetMe()">Greet Me</button>
       <button onclick="toggleTheme()">Toggle Theme</button>
       <p id="greeting"></p>
     </div>
- 
+
     <script>
-      // JavaScript — adds behaviour to the page
+      // ============================================================
+      //  JavaScript — adds behaviour to the page
+      // ============================================================
+
+      // ---- Greet button -----------------------------------------
       function greetMe() {
         const now = new Date();
         const hour = now.getHours();
@@ -85,10 +205,62 @@
         document.getElementById("greeting").innerText =
           message + " Thanks for visiting my page.";
       }
- 
+
+      // ---- Theme toggle -----------------------------------------
       function toggleTheme() {
         document.body.classList.toggle("dark");
       }
+
+      // ---- Live clock -------------------------------------------
+      function updateClock() {
+        const now = new Date();
+        const dateOptions = {
+          weekday: "short",
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        };
+        const dateString = now.toLocaleDateString("en-GB", dateOptions);
+        const timeString = now.toLocaleTimeString("en-GB", { hour12: false });
+        document.getElementById("clock-date").innerText = dateString;
+        document.getElementById("clock-time").innerText = timeString;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // ---- Animated skill bars ----------------------------------
+      function animateSkillBars() {
+        const bars = document.querySelectorAll(".skill-fill");
+        bars.forEach(function (bar) {
+          const level = bar.getAttribute("data-level");
+          setTimeout(function () {
+            bar.style.width = level + "%";
+          }, 200);
+        });
+      }
+      window.addEventListener("load", animateSkillBars);
+
+      // ---- Quote of the day -------------------------------------
+      const quotes = [
+        { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+        { text: "Code is like humour. When you have to explain it, it's bad.", author: "Cory House" },
+        { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
+        { text: "Programs must be written for people to read, and only incidentally for machines to execute.", author: "Harold Abelson" },
+        { text: "The best error message is the one that never shows up.", author: "Thomas Fuchs" },
+        { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
+        { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
+        { text: "The only way to learn a new programming language is by writing programs in it.", author: "Dennis Ritchie" },
+        { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler" },
+        { text: "It always seems impossible until it's done.", author: "Nelson Mandela" }
+      ];
+
+      function showRandomQuote() {
+        const i = Math.floor(Math.random() * quotes.length);
+        const chosen = quotes[i];
+        document.getElementById("quote-text").innerText = '"' + chosen.text + '"';
+        document.getElementById("quote-author").innerText = "— " + chosen.author;
+      }
+      window.addEventListener("load", showRandomQuote);
     </script>
   </body>
 </html>
