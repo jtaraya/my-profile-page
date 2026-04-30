@@ -233,6 +233,7 @@ The complete `index.html` file (with all features combined) is in this repositor
 | *"How do I make a progress bar that animates from 0% to its target value when the page loads?"* | CSS `transition` handles the animation, JavaScript just changes the width — they work as a team |
 | *"How do I pick a random item from a list in JavaScript?"* | `Math.floor(Math.random() * array.length)` gives a valid random index every time |
 | *"How do I make a small box stay in the top-right corner even when the page scrolls?"* | `position: fixed` keeps an element in place; `z-index` controls what shows on top |
+| *"Why does GitHub only show HTML even though my page has CSS and JavaScript?" → "Because all my code was in one file. Real projects keep HTML, CSS, and JavaScript in separate files. I learned how to use <link> to load CSS and <script src="..."> to load JavaScript." |
 
 ---
 

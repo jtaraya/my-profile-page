@@ -1,0 +1,115 @@
+/* CSS — controls how the page looks */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4ff;
+  margin: 40px;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark {
+  background-color: #1e1e2f;
+  color: #f0f0f0;
+}
+h1 { color: #006eaa; text-align: center; }
+h2 { color: #008060; }
+.profile-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+body.dark .profile-box {
+  background-color: #2a2a3d;
+}
+ul { line-height: 2; }
+button {
+  background-color: #006eaa;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 6px 4px;
+  font-size: 14px;
+}
+button:hover { background-color: #00547f; }
+
+/* Live clock — fixed in the top-right corner */
+#live-clock {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #006eaa;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+body.dark #live-clock {
+  background-color: #2a2a3d;
+  border: 1px solid #4a4a5e;
+}
+#live-clock .clock-date {
+  font-size: 12px;
+  opacity: 0.85;
+}
+#live-clock .clock-time {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+/* Skills bars */
+.skill { margin: 10px 0; }
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.skill-track {
+  background-color: #e6e6e6;
+  border-radius: 6px;
+  height: 14px;
+  overflow: hidden;
+}
+body.dark .skill-track {
+  background-color: #3a3a4d;
+}
+.skill-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 6px;
+  transition: width 1.5s ease-out;
+}
+.skill-fill.html-bar { background-color: #e34c26; }
+.skill-fill.css-bar  { background-color: #264de4; }
+.skill-fill.js-bar   { background-color: #f0db4f; }
+
+/* Quote box */
+#quote-box {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #f5f9ff;
+  border-left: 4px solid #006eaa;
+  border-radius: 6px;
+  font-style: italic;
+  min-height: 60px;
+}
+body.dark #quote-box {
+  background-color: #252538;
+  border-left-color: #008060;
+}
+#quote-author {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  opacity: 0.8;
+}
